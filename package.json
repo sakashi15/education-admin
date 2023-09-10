@@ -1,11 +1,11 @@
 {
-  "name": "xtreme-bootstrap-vue",
+  "name": "education-front-admin",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
+    "lint": "export NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service lint"
   },
   "dependencies": {
     "algoliasearch": "^4.5.1",
@@ -15,7 +15,6 @@
     "core-js": "^3.6.5",
     "feather-icons": "^4.28.0",
     "moment": "^2.29.1",
-    "node-sass": "^6.0.0",
     "nprogress": "^0.2.0",
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.0",
@@ -45,7 +44,7 @@
     "mutationobserver-shim": "^0.3.7",
     "popper.js": "^1.16.1",
     "portal-vue": "^2.1.7",
-    "sass": "^1.26.11",
+    "sass": "^1.74.1",
     "sass-loader": "^10.0.2",
     "vue-cli-plugin-bootstrap-vue": "~0.7.0",
     "vue-template-compiler": "^2.6.11"

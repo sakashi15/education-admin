@@ -4,22 +4,22 @@
       <MonthTable></MonthTable>
     </b-card>
   </b-col>
+
 </template>
 
+
+
 <script>
-import MonthTable from "../dashboards/dashboard-components/month-table/MonthTable8";
+import MonthTable from "../dashboards/dashboard-components/month-table/MonthTable42";
 
 export default {
-  name: "Revenues",
+  name: 'MemberSubscriptions',
   data: () => ({
 
   }),
   components: {
     MonthTable,
   },
-}
+
+};
 </script>
-
-<style scoped>
-
-</style>

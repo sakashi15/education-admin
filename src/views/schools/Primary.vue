@@ -10,10 +10,10 @@
 
 
 <script>
-import MonthTable from "../dashboards/dashboard-components/month-table/MonthTable3";
+import MonthTable from "../dashboards/dashboard-components/month-table/MonthTable43";
 
 export default {
-  name: 'ExpencesDarJma3a',
+  name: 'MemberSubscriptions',
   data: () => ({
 
   }),

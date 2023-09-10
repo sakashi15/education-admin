@@ -16,7 +16,6 @@
                 </b-breadcrumb>
                 <router-view />
             </div>
-            <Customizer/>
             <Footer/>
         </aside>
     </div>
@@ -27,7 +26,6 @@ import VerticalHeader from './vertical-header/VerticalHeader'
 import HorizontalHeader from './horizontal-header/HorizontalHeader'
 import HorizontalSidebar from './horizontal-sidebar/HorizontalSidebar'
 import VerticalSidebar from './vertical-sidebar/VerticalSidebar'
-import Customizer from './Customizer/Customizer'
 import Footer from './footer/Footer'
 import {mapState} from 'vuex'
 export default {
@@ -35,7 +33,6 @@ export default {
     components:{
         VerticalHeader,
         VerticalSidebar,
-        Customizer,
         HorizontalSidebar,
         HorizontalHeader,
         Footer
@@ -75,6 +72,8 @@ export default {
     
 },
     mounted() {
+      this.$store.commit("SET_DIRECTION", "rtl");
+      document.documentElement.setAttribute("dir", "rtl");
         //callback once mounted
         this.winWidth()
     },

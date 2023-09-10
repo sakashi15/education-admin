@@ -98,8 +98,8 @@
                         <b-form-input
                             id="input-1"
                             v-model="row.item.vice_director_name"
-                            readonly
                             type="text"
+                            readonly
                             placeholder="ادخل اسم نائب مدير المؤسسة"
                         ></b-form-input>
                       </b-form-group>
@@ -114,8 +114,8 @@
                         <b-form-input
                             id="input-1"
                             v-model="row.item.vice_director_name"
-                            readonly
                             type="text"
+                            readonly
                             placeholder="ادخل اسم ناظر المؤسسة"
                         ></b-form-input>
                       </b-form-group>
@@ -130,8 +130,8 @@
                       >
                         <b-form-input
                             id="input-1"
-                            v-model="row.item.education_consultant"
                             readonly
+                            v-model="row.item.education_consultant"
                             type="text"
                             placeholder="ادخل اسم مستشار التربية"
                         ></b-form-input>
@@ -146,9 +146,9 @@
                       >
                         <b-form-input
                             id="input-1"
+                            readonly
                             v-model="row.item.guidance_consultant"
                             type="text"
-                            readonly
                             placeholder="ادخل اسم مستشار التوجيه"
                         ></b-form-input>
                       </b-form-group>
@@ -162,8 +162,8 @@
                       >
                         <b-form-input
                             id="input-1"
-                            v-model="row.item.savin"
                             readonly
+                            v-model="row.item.savin"
                             type="text"
                             placeholder="ادخل اسم المقتصد"
                         ></b-form-input>
@@ -194,8 +194,8 @@
                       >
                         <b-form-input
                             id="input-1"
-                            v-model="row.item.helper_savin"
                             readonly
+                            v-model="row.item.helper_savin"
                             type="text"
                             placeholder="ادخل اسم عون المصالح الاقتصادية"
                         ></b-form-input>
@@ -210,8 +210,8 @@
                       >
                         <b-form-input
                             id="input-1"
-                            v-model="row.item.fields_number"
                             readonly
+                            v-model="row.item.fields_number"
                             type="number"
                             placeholder="ادخل عدد الشعب"
                         ></b-form-input>
@@ -226,8 +226,8 @@
                       >
                         <b-form-input
                             id="input-1"
-                            v-model="row.item.teachers.length"
                             readonly
+                            v-model="row.item.teachers.length"
                             type="number"
                             placeholder="ادخل عدد الاساتذة"
                         ></b-form-input>
@@ -242,8 +242,8 @@
                       >
                         <b-form-input
                             id="input-1"
-                            :value="row.item.employees.filter((element) => element.is_supervisor == 1).length"
                             readonly
+                            :value="row.item.employees.filter((element) => element.is_supervisor == 1).length"
                             type="number"
                             placeholder="ادخل عدد المشرفين"
                         ></b-form-input>
@@ -261,8 +261,8 @@
                       >
                         <b-form-input
                             id="input-1"
-                            v-model="row.item.rooms_number"
                             readonly
+                            v-model="row.item.rooms_number"
                             type="number"
                             placeholder="ادخل عدد الحجرات"
                         ></b-form-input>
@@ -277,8 +277,8 @@
                       >
                         <b-form-input
                             id="input-1"
-                            :value="getGroupsTotal(row.item.levels)"
                             readonly
+                            :value="getGroupsTotal(row.item.levels)"
                             type="number"
                             placeholder="ادخل عدد الافواج التربوية"
                         ></b-form-input>
@@ -309,8 +309,8 @@
                       >
                         <b-form-input
                             id="input-1"
-                            :value="row.item.employees.filter((element) => element.is_supervisor == 0).length"
                             readonly
+                            :value="row.item.employees.filter((element) => element.is_supervisor == 0).length"
                             type="number"
                             placeholder="ادخل عدد عمال المؤسسة"
                         ></b-form-input>
@@ -793,7 +793,7 @@ export default {
   methods: {
     getAllSchools() {
       this.isLoading = true
-      this.$http.get("primary/get-all?type=secondary")
+      this.$http.get("primary/get-all?type=primary")
           .then(response => {
             this.isLoading = false
             if(response.status === 200){
@@ -836,7 +836,8 @@ export default {
         case "semi-internal":
           return "نصف داخلي"
       }
-    }
+    },
+
   },
 };
 </script>

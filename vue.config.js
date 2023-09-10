@@ -1,3 +1,3 @@
 module.exports = {
-  publicPath: "/jam3iya",
+  publicPath: "/education-admin",
 };

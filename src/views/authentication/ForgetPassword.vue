@@ -1,9 +1,10 @@
 <template>
+  <b-overlay :show="isLoading" rounded="sm">
   <div
-      id="login"
-      style="min-height: calc(100vh - 20px)"
-      class="fill-height d-flex align-items-center justify-content-center"
-      tag="section"
+    id="login"
+    style="min-height: calc(100vh - 20px)"
+    class="fill-height d-flex align-items-center justify-content-center"
+    tag="section"
   >
     <b-row class="justify-content-center no-gutters">
       <b-col lg="12" md="12" class="d-flex align-items-center">
@@ -21,10 +22,10 @@
                       مديرية التربية - ولاية بشار
                     </p>
                     <b-button
-                        size="lg"
-                        variant="info"
-                        class="mt-4 text-capitalize"
-                    >إكتشف اكثر</b-button
+                      size="lg"
+                      variant="info"
+                      class="mt-4 text-capitalize"
+                      >إكتشف اكثر</b-button
                     >
                   </div>
                 </div>
@@ -35,10 +36,10 @@
                 <br>
                 <br>
                 <img src="@/assets/images/logo.png" height="80" width="90"/>
-                <h2 class="font-weight-bold mt-4">تسجيل الدخول</h2>
+                <h2 class="font-weight-bold mt-4">استرجاع كلمة المرور</h2>
                 <h6 class="mb-4">
-                  هل نسيت كلمة المرور ؟
-                  <b-link href="/education-admin/forget-password">اضغط هنا</b-link>
+                  تتذكر معلومات الدخول ؟
+                  <b-link to="">تسجيل الدخول</b-link>
                 </h6>
 
                 <b-alert
@@ -49,7 +50,7 @@
                     fade
                     v-if="showSuccess"
                 >
-                  <span class="mr-4 text-right">تمت العملية بنجاح</span>
+                  <span class="mr-4 text-right">تم ارسال رسالة الى البريد الالكتروني الخاص بك</span>
                 </b-alert>
                 <b-alert
                     variant="danger"
@@ -74,43 +75,30 @@
                 <b-form @submit.prevent="submit">
                   <b-form-group>
                     <b-form-input
-                        id="txt-username"
-                        type="text"
-                        placeholder="ادخل اسم المستخدم"
-                        class="mb-3"
-                        v-model="$v.form.username.$model"
-                        :state="validateState('username')"
+                      id="txt-username"
+                      type="text"
+                      placeholder="ادخل الايميل الخاص بك"
+                      class="mb-3"
+                      v-model="$v.form.username.$model"
+                      :state="validateState('username')"
                     ></b-form-input>
                     <b-form-invalid-feedback id="txt-username"
-                    >هذا الحقل اجباري</b-form-invalid-feedback
-                    >
-                  </b-form-group>
-                  <b-form-group>
-                    <b-form-input
-                        id="txt-pwd"
-                        type="password"
-                        placeholder="ادخل كلمة المرور"
-                        class="mb-3"
-                        v-model="$v.form.pwd.$model"
-                        :state="validateState('pwd')"
-                    ></b-form-input>
-                    <b-form-invalid-feedback id="txt-pwd"
-                    >هذا الحقل اجباري</b-form-invalid-feedback
+                      >هذا الحقل اجباري</b-form-invalid-feedback
                     >
                   </b-form-group>
 
                   <b-button
-                      type="submit"
-                      variant="primary"
-                      :disabled="$v.form.$invalid"
-                      size="lg"
-                      block
-                      class="mt-4"
-                  >سجل دخولك</b-button
+                    type="submit"
+                    variant="primary"
+                    :disabled="$v.form.$invalid"
+                    size="lg"
+                    block
+                    class="mt-4"
+                    >استراجاع</b-button
                   >
                 </b-form>
-                <br>
-                <br>
+               <br>
+               <br>
               </div>
             </b-col>
           </b-row>
@@ -118,6 +106,7 @@
       </b-col>
     </b-row>
   </div>
+  </b-overlay>
 </template>
 
 <script>
@@ -130,12 +119,11 @@ export default {
   data: () => ({
     form: {
       username: "",
-      pwd: "",
     },
-    checkbox: false,
     showError: false,
     showSuccess: false,
-    showErrorInvalid: false
+    showErrorInvalid: false,
+    isLoading: false
   }),
   computed: {},
   mounted() {
@@ -145,10 +133,6 @@ export default {
   validations: {
     form: {
       username: {
-        required,
-        minLength: minLength(4),
-      },
-      pwd: {
         required,
         minLength: minLength(4),
       },
@@ -163,19 +147,15 @@ export default {
 
       this.showError = false
       this.showSuccess = false
+      this.isLoading = true
 
-      this.$http.post("admin/login", {
+      this.$http.post("admin/forget-password", {
         login: this.form.username,
-        password: this.form.pwd
       })
           .then(response => {
+            this.isLoading = false
             if(response.status === 200){
-              if(response.data.success === true) {
-                localStorage.setItem('_utoken', response.data.access_token)
-                localStorage.setItem('login', response.data.admin.phone)
-                localStorage.setItem('role', response.data.admin.username)
-                this.$router.push({ path: "/home" });
-              }
+              this.showSuccess = true
             }else{
               this.showError = true
             }
